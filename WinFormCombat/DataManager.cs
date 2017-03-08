@@ -11,21 +11,32 @@ namespace WinFormCombat
     class DataManager
     {
 
-        
+        /// <summary>
+        /// Save function
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="fileName"> Name of the file </param>
+        /// <param name="data"> Data saved in file</param>
         public static void Serialize<T>(string fileName, T data)
         {
             XmlSerializer serilazation = new XmlSerializer(typeof(T));
-            System.IO.TextWriter writer = new System.IO.StreamWriter(fileName + ".xml");
+            Directory.CreateDirectory("../SavedData/");
+            System.IO.TextWriter writer = new System.IO.StreamWriter("../SavedData/" + fileName + ".xml");
             serilazation.Serialize(writer, data);
             writer.Close();
         }
 
-        
+        /// <summary>
+        /// load function
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="fileName"> Name of the file </param>
+        /// <returns></returns>
         public static T Deserialize<T>(string fileName)
         {
             T data;
             XmlSerializer serilazation = new XmlSerializer(typeof(T));
-            System.IO.TextReader reader = new System.IO.StreamReader(fileName + ".xml");
+            System.IO.TextReader reader = new System.IO.StreamReader("../SavedData/" + fileName + ".xml");
             data = (T)serilazation.Deserialize(reader);
             reader.Close();
             return data;
