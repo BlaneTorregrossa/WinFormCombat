@@ -13,6 +13,7 @@ namespace WinFormCombat
 
         /// <summary>
         /// Save function
+        /// Problem: SavedData folder is created on desktop and not in the folder with the executable.
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="fileName"> Name of the file </param>
@@ -20,8 +21,8 @@ namespace WinFormCombat
         public static void Serialize<T>(string fileName, T data)
         {
             XmlSerializer serilazation = new XmlSerializer(typeof(T));
-            Directory.CreateDirectory("../SavedData/");
-            System.IO.TextWriter writer = new System.IO.StreamWriter("../SavedData/" + fileName + ".xml");
+            Directory.CreateDirectory("../ADGP-125/SavedData/");
+            System.IO.TextWriter writer = new System.IO.StreamWriter("../ADGP-125/SavedData/" + fileName + ".xml");
             serilazation.Serialize(writer, data);
             writer.Close();
         }
@@ -36,7 +37,7 @@ namespace WinFormCombat
         {
             T data;
             XmlSerializer serilazation = new XmlSerializer(typeof(T));
-            System.IO.TextReader reader = new System.IO.StreamReader("../SavedData/" + fileName + ".xml");
+            System.IO.TextReader reader = new System.IO.StreamReader("../ADGP-125/SavedData/" + fileName + ".xml");
             data = (T)serilazation.Deserialize(reader);
             reader.Close();
             return data;

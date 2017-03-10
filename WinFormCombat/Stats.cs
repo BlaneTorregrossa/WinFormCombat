@@ -14,9 +14,19 @@ namespace WinFormCombat
         public int Strength;
         public int Luck;
         public int Speed;
+        public int i;
+        public int j;
 
 
-        public Stats() { }
+        public Stats()
+        {
+            Health = 100;
+            Defense = 25;
+            Strength = 10;
+            Luck = 5;
+            Speed = 10;
+
+        }
 
         public Stats(int health, int defense, int strength, int luck, int speed)
         {
@@ -25,6 +35,7 @@ namespace WinFormCombat
             Strength = strength;
             Luck = luck;
             Speed = speed;
+            
         } 
 
     }
